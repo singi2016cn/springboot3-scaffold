@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.singi.springboot3_scaffold.mapper.ProvinceMapper">
+    <resultMap id="province" type="Province">
+        <id property="id" column="id" />
+        <collection property="city" ofType="City">
+            <id property="id" column="city_id" />
+            <result property="province_id" column="province_id" />
+            <result property="id" column="city_id" />
+            <result property="name" column="city_name" />
+            <result property="no" column="city_no" />
+            <result property="createdAt" column="city_created_at" />
+            <result property="updatedAt" column="city_updated_at" />
+        </collection>
+    </resultMap>
+    <select id="provinceWithCities" resultMap="province">
+        select p.*,c.id city_id,c.province_id,c.name city_name,c.no city_no,c.created_at city_created_at,c.updated_at city_updated_at from province p left join city c on c.province_id = p.id where p.id = #{id} limit 10000
+    </select>
+</mapper>
