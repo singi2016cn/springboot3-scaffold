@@ -1,13 +1,16 @@
 package top.singi.springboot3_scaffold.exceptionHandle;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import top.singi.springboot3_scaffold.dto.ResultDTO;
 import top.singi.springboot3_scaffold.exception.DataNotFoundException;
 
+import java.util.Arrays;
 import java.util.Optional;
 
+@Slf4j
 @ControllerAdvice
 @ResponseBody
 public class GlobalExceptionHandler {
@@ -32,6 +35,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     public ResultDTO handleOtherException(Exception e) {
+        log.error(Arrays.toString(e.getStackTrace()));
         return ResultDTO.fail500(Optional.of(e.getMessage()));
     }
 

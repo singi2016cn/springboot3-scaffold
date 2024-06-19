@@ -3,17 +3,21 @@ package top.singi.springboot3_scaffold.util;
 import org.springframework.util.StringUtils;
 import top.singi.springboot3_scaffold.constant.CommonConstant;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Util {
 
     /**
      * 格式化日期时间格式
-     * @param datetime 日期时间
+     * @param date 日期
      * @return String
      */
-    public static String datetime(Object datetime) {
-        return new SimpleDateFormat(CommonConstant.DATE_TIME_FORMAT_PATTERN).format(datetime);
+    public static String datetime(Date date) {
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+        return DateTimeFormatter.ofPattern(CommonConstant.DATE_TIME_FORMAT_PATTERN).format(localDateTime);
     }
 
     /**

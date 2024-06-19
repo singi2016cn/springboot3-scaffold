@@ -1,19 +1,12 @@
 package top.singi.springboot3_scaffold.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import top.singi.springboot3_scaffold.dto.PaginationDTO;
+import top.singi.springboot3_scaffold.dto.ResultDTO;
 import top.singi.springboot3_scaffold.entity.Book;
 import top.singi.springboot3_scaffold.service.BookService;
 
@@ -25,7 +18,7 @@ public class BookController {
     BookService bookService;
 
     @GetMapping
-    public Map<String,Object> index(
+    public PaginationDTO index(
         @RequestParam(required = false, defaultValue = "") String search,
         @RequestParam(name = "page", required = false, defaultValue = "1") Integer page,
         @RequestParam(name = "per_page", required = false, defaultValue = "10") Integer perPage
@@ -37,15 +30,30 @@ public class BookController {
         }
         
         IPage<Book> pageRes = lambdaQueryChainWrapper.page(new Page<>(page, perPage));
-        
-        HashMap<String,Object> hashMap = new HashMap<>();
-        hashMap.put("items", pageRes.getRecords());
-        hashMap.put("total", pageRes.getTotal());
-        return hashMap;
+        return PaginationDTO.of(pageRes.getRecords(), pageRes.getTotal());
     }
 
     @GetMapping("/{id}")
-    public Book show(@PathVariable Integer id) {
-        return bookService.getById(id);
+    public ResultDTO show(@PathVariable Integer id) {
+        return ResultDTO.success(bookService.getById(id));
+    }
+
+    @PostMapping
+    public ResultDTO save(@RequestBody Book book) {
+        bookService.save(book);
+        return ResultDTO.success(book.getId());
+    }
+
+    @PutMapping("/{id}")
+    public ResultDTO update(@RequestBody Book book, @PathVariable Integer id) {
+        book.setId(id);
+        bookService.updateById(book);
+        return ResultDTO.success(book.getId());
+    }
+
+    @DeleteMapping("/{id}")
+    public ResultDTO delete(@PathVariable Integer id) {
+        bookService.removeById(id);
+        return ResultDTO.success(id);
     }
 }

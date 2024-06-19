@@ -1,10 +1,11 @@
 package top.singi.springboot3_scaffold.entity;
 
-import java.time.LocalDateTime;
-
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import top.singi.springboot3_scaffold.annotation.DateTimeAndJsonFormatAnnotation;
+import top.singi.springboot3_scaffold.constant.CommonConstant;
+
+import java.time.LocalDateTime;
 
 @Data
 public class City {
@@ -13,10 +14,10 @@ public class City {
     String name;
     String no;
 
-    @DateTimeAndJsonFormatAnnotation
+    @JsonFormat(pattern = CommonConstant.DATE_TIME_FORMAT_PATTERN)
     LocalDateTime createdAt;
 
-    @DateTimeAndJsonFormatAnnotation
+    @JsonFormat(pattern = CommonConstant.DATE_TIME_FORMAT_PATTERN)
     LocalDateTime updatedAt;
 
     @TableField(exist = false)

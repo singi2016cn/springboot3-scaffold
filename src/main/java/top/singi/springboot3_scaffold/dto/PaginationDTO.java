@@ -7,9 +7,9 @@ import lombok.Data;
 @Data
 public class PaginationDTO {
     Object items;
-    String total;
+    Long total;
 
-    public static PaginationDTO of(Object items, String total) {
+    public static PaginationDTO of(Object items, Long total) {
         return new PaginationDTO(items, total);
     }
 }

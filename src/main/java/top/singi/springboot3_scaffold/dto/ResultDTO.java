@@ -13,6 +13,10 @@ public class ResultDTO {
     String msg;
     Object data;
 
+    public static ResultDTO success() {
+        return success(null);
+    }
+
     public static ResultDTO success(Object data) {
         return new ResultDTO(HttpStatus.OK.value(), HttpStatus.OK.name(), data);
     }
