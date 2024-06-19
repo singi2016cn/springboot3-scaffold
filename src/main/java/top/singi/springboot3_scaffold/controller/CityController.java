@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +18,6 @@ import top.singi.springboot3_scaffold.entity.City;
 import top.singi.springboot3_scaffold.mapper.CityMapper;
 import top.singi.springboot3_scaffold.service.CityService;
 
-@Controller
 @RestController
 @RequestMapping("/city")
 public class CityController {
@@ -57,6 +55,6 @@ public class CityController {
 
     @GetMapping("/{id}/province")
     public City showCities(@PathVariable Integer id) {
-        return cityMapper.cityWithProince(id);
+        return cityMapper.cityWithProvince(id);
     }
 }

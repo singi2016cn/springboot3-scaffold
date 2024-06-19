@@ -11,7 +11,7 @@
             <result property="updatedAt" column="p_updated_at" />
         </association>
     </resultMap>
-    <select id="cityWithProince" resultMap="city">
+    <select id="cityWithProvince" resultMap="city">
         select c.*,p.id p_id,p.name p_name,p.no p_no,p.created_at p_created_at,p.updated_at p_updated_at from city c left join province p on p.id = c.province_id where c.id = #{id} limit 1
     </select>
 </mapper>

@@ -30,4 +30,5 @@ public class Springboot3ScaffoldApplication {
 		interceptor.addInnerInterceptor(new BlockAttackInnerInterceptor());
         return interceptor;
     }
+
 }

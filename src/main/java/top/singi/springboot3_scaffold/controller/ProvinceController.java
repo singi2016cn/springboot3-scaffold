@@ -19,7 +19,6 @@ import top.singi.springboot3_scaffold.entity.Province;
 import top.singi.springboot3_scaffold.mapper.ProvinceMapper;
 import top.singi.springboot3_scaffold.service.ProvinceService;
 
-@Controller
 @RestController
 @RequestMapping("/province")
 public class ProvinceController {

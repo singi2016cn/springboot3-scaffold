@@ -7,4 +7,6 @@ public final class CommonConstant {
     public static final String DATE_TIME_FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss";
     // 日期时间格式化时区：东八区
     public static final String DATE_TIME_FORMAT_TIMEZONE_GMT8 = "GMT+8";
+    // 默认角色
+    public static final String GRANTED_AUTHORITY_ROLE_ADMIN = "ROLE_ADMIN";
 }
