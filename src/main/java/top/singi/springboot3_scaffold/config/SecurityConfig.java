@@ -17,14 +17,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import top.singi.springboot3_scaffold.security.JwtAuthenticationFilter;
-import top.singi.springboot3_scaffold.service.UserService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-    @Autowired
-    private UserService userService;
-
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
